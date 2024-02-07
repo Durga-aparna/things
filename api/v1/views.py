@@ -4,8 +4,8 @@ from django.http import JsonResponse,HttpResponse
 from rest_framework.parsers import JSONParser
 from buses.models import bus
 from api.v1.serializers import carSerializer
-
-def bus_details(request):
+@csrf_exempt
+def get_details(request):
     if request.method=='GET':
         result=bus.objects.all()
         serializer=carSerializer(result,many=True)
@@ -14,7 +14,8 @@ def bus_details(request):
         else:
             return  HttpResponse("error occured")
     return HttpResponse("invalid details") 
-
+@csrf_exempt
+def post_details(request):
     elif request.method=="POST":
         data=JSONParser().parse(request)
         serializer=carSerializer(data=data)
