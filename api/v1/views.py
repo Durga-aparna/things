@@ -14,9 +14,8 @@ def bus_details(request):
         else:
             return  HttpResponse("error occured")
     return HttpResponse("invalid details") 
-@csrf_exempt    
-def all_details(request):
-    if request.method=="POST":
+
+    elif request.method=="POST":
         data=JSONParser().parse(request)
         serializer=carSerializer(data=data)
         if serializer.is_valid():
