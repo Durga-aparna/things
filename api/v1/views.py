@@ -4,7 +4,7 @@ from django.http import JsonResponse,HttpResponse
 from rest_framework.parsers import JSONParser
 from buses.models import bus
 from api.v1.serializers import carSerializer
-@csrf_exempt
+
 def bus_details(request):
     if request.method=='GET':
         result=bus.objects.all()
